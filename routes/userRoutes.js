@@ -3,8 +3,7 @@ const passport = require("../passport");
 const {
   getUsers,
   createUser,
-  login,
-  secret
+  login
 } = require("../controllers").userController;
 router
   .route("/")
