@@ -1,4 +1,17 @@
 const { User } = require("../models");
+const JWT = require("jsonwebtoken");
+const { jwtSecret } = require("../config");
+const generateToken = user => {
+  return JWT.sign(
+    {
+      issuer: "ride-me-app",
+      sub: user.id,
+      iat: new Date().getTime(),
+      exp: new Date().setDate(new Date().getDate() + 2)
+    },
+    jwtSecret
+  );
+};
 module.exports = {
   // VALIDATION NOT REQUIRED
   getUsers: async (req, res, next) => {
@@ -30,25 +43,19 @@ module.exports = {
     });
     await dbUser.save();
 
+    const token = await generateToken(dbUser);
     return res.status(201).json({
+      token,
+      message: "Signed up",
       user: dbUser
     });
   },
+  // VALIDATION: PENDING
   login: async (req, res, next) => {
-    const dbUser = await User.findOne({ "local.email": req.body.email });
-    if (!dbUser) {
-      return res.status(400).json({
-        message: "Invalid email or password"
-      });
-    }
-    if (!dbUser.isValidPassword(req.body.password)) {
-      return res.status(400).json({
-        message: "Invalid email or password"
-      });
-    }
+    const token = await generateToken(req.user);
     return res.status(200).json({
-      message: "Logged In",
-      user: dbUser
+      token,
+      message: "Logged In"
     });
   }
 };
