@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const logger = require("morgan");
+const { userRoutes } = require("./routes");
 const app = express();
 
 // =============================================================
@@ -22,6 +24,10 @@ mongoose
 // MIDDLEWARES
 // =============================================================
 app.use(express.json());
+app.use(logger("dev"));
+// =============================================================
+// ROUTES
+app.use("/api/users", userRoutes);
 // =============================================================
 // ERROR MIDDLEWARE FOR PAGE NOT FOUND
 // =============================================================
