@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 const userSchema = new mongoose.Schema({
   method: {
     type: String,
@@ -9,6 +10,7 @@ const userSchema = new mongoose.Schema({
     email: {
       type: String,
       required: true,
+      unique: true,
       lowercase: true
     },
     password: {
@@ -36,3 +38,26 @@ const userSchema = new mongoose.Schema({
     }
   }
 });
+
+userSchema.pre("save", async function(next) {
+  try {
+    if (this.method !== "local") {
+      return next();
+    }
+    const salt = await bcrypt.genSalt(10);
+    this.local.password = await bcrypt.hash(this.local.password, salt);
+    return next();
+  } catch (error) {
+    return next(error);
+  }
+});
+
+userSchema.methods.isValidPassword = async function(password) {
+  try {
+    return await bcrypt.compare(password, this.local.password);
+  } catch (error) {
+    throw new Error("Internal Server Error");
+  }
+};
+const userModel = mongoose.model("user", userSchema);
+module.exports = userModel;
