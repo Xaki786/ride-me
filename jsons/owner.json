@@ -1,0 +1,9 @@
+{
+  "id": "objectId",
+  "licenseNumber": "string",
+  "car": {
+    "type": "objectId",
+    "ref": "car"
+  },
+  "permission": "boolean"
+}

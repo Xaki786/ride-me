@@ -1,0 +1,30 @@
+{
+  "id": "objectId",
+  "customers": [
+    {
+      "type": "ObjectId",
+      "ref": "customer"
+    }
+  ],
+  "car": {
+    "type": "ObjectId",
+    "ref": "car"
+  },
+  "bill": {
+    "type": "ObjectId",
+    "ref": "bill"
+  },
+  "group": {
+    "type": "ObjectId",
+    "ref": "group"
+  },
+  "priority": "Number(confused)",
+  "date": "string",
+  "readingStart": "Number",
+  "readingEnd": "Number",
+  "distance": "Number(end-start)",
+  "petrolUsed": "Number",
+  "checkInPlace": "String",
+  "checkOutPlace": "String",
+  "damageCost": "Number"
+}

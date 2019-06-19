@@ -1,0 +1,20 @@
+{
+  "id": "objectId",
+  "email": "string",
+  "password": "string",
+  "name": "string",
+  "address": "string",
+  "phoneNumber": "string",
+  "userType": {
+    "type": "String",
+    "enum": ["owner", "customer"]
+  },
+  "owner": {
+    "type": "objectId",
+    "ref": "owner"
+  },
+  "customer": {
+    "type": "objectId",
+    "ref": "customer"
+  }
+}

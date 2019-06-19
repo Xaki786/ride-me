@@ -1,0 +1,28 @@
+{
+  "id": "objectId",
+  "carNumber": "text",
+  "owner": {
+    "type": "objectId",
+    "ref": "owner"
+  },
+  "bookings(car can have only one booking at a time)": [
+    {
+      "id": "objectId",
+      "ref": "booking"
+    }
+  ],
+  "bills(car can have only one bill at a time)": [
+    {
+      "id": "objectId",
+      "ref": "bill"
+    }
+  ],
+  "insuranceNumber": "string",
+  "insuranceAmount": "Number",
+  "propertyTax": "Number",
+  "tyreCost": "Number",
+  "servicingCost": "Number",
+  "lastReading": "Number",
+  "lastBooking": "Number(confused)",
+  "nextBooking": "Number(confused)"
+}

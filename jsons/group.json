@@ -1,0 +1,13 @@
+{
+  "id": "objectId",
+  "customers": [
+    {
+      "type": "objectId",
+      "ref": "customer"
+    }
+  ],
+  "booking": {
+    "id": "objectId",
+    "ref": "booking"
+  }
+}

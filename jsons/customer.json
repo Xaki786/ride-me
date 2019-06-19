@@ -1,0 +1,9 @@
+{
+  "id": "objectId",
+  "groups(customer can only join one group at a time)": [
+    {
+      "type": "objectId",
+      "ref": "group"
+    }
+  ]
+}

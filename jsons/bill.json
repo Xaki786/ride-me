@@ -1,0 +1,22 @@
+{
+  "id": "objectId",
+  "booking": {
+    "type": "objectId",
+    "ref": "booking",
+    "group": {
+      "id": "objectId",
+      "ref": "group"
+    }
+  },
+  "car": {
+    "type": "objectId",
+    "ref": "car"
+  },
+  "year": "string date",
+  "totalDistance": "Number",
+  "totalPetrol": "Number",
+  "yearlyFixedCost": "Number",
+  "totalBill": "reading-start, reading-end, distance, petrol-used from booking",
+  "costPerHead": "confused on how to calculate it if destinations are different",
+  "paid": "Boolean"
+}
