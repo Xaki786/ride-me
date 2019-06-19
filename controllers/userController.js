@@ -1,4 +1,12 @@
-const { User } = require("../models");
+const {
+  User,
+  Car,
+  Owner,
+  Booking,
+  Bill,
+  Customer,
+  Group
+} = require("../models");
 const JWT = require("jsonwebtoken");
 const { jwtSecret } = require("../config");
 const generateToken = user => {

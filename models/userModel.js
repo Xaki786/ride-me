@@ -21,10 +21,6 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    licenseNumber: {
-      type: String,
-      required: true
-    },
     address: {
       type: String,
       required: true
@@ -36,6 +32,14 @@ const userSchema = new mongoose.Schema({
     permission: {
       type: Number
     }
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "owner"
+  },
+  customer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "customer"
   }
 });
 
