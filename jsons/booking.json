@@ -14,10 +14,6 @@
     "type": "ObjectId",
     "ref": "bill"
   },
-  "group": {
-    "type": "ObjectId",
-    "ref": "group"
-  },
   "priority": "Number(confused)",
   "date": "string",
   "readingStart": "Number",

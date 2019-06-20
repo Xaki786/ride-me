@@ -10,6 +10,7 @@ router
   .get(getUsers)
   .post(createUser);
 
+router.route("/customer").get();
 router
   .route("/login")
   .post(passport.authenticate("local", { session: false }), login);

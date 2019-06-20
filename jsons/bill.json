@@ -3,10 +3,12 @@
   "booking": {
     "type": "objectId",
     "ref": "booking",
-    "group": {
-      "id": "objectId",
-      "ref": "group"
-    }
+    "customers": [
+      {
+        "id": "objectId",
+        "ref": "customer"
+      }
+    ]
   },
   "car": {
     "type": "objectId",
