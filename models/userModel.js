@@ -25,13 +25,13 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    phoneNumber: {
-      type: String,
-      required: true
-    },
     permission: {
       type: Number
     }
+  },
+  phoneNumber: {
+    type: String,
+    required: true
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
