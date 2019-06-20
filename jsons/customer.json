@@ -1,3 +1,9 @@
 {
-  "id": "objectId"
+  "id": "objectId",
+  "bookings": [
+    {
+      "type": "objectId",
+      "ref": "booking"
+    }
+  ]
 }

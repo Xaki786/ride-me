@@ -2,13 +2,7 @@
   "id": "objectId",
   "booking": {
     "type": "objectId",
-    "ref": "booking",
-    "customers": [
-      {
-        "id": "objectId",
-        "ref": "customer"
-      }
-    ]
+    "ref": "booking"
   },
   "car": {
     "type": "objectId",

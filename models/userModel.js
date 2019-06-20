@@ -20,14 +20,11 @@ const userSchema = new mongoose.Schema({
     name: {
       type: String,
       required: true
-    },
-    address: {
-      type: String,
-      required: true
-    },
-    permission: {
-      type: Number
     }
+  },
+  address: {
+    type: String,
+    required: true
   },
   phoneNumber: {
     type: String,
