@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema({
   customer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "customer"
+  },
+  userType: {
+    type: String,
+    required: true
   }
 });
 

@@ -1,20 +1,31 @@
-{
-  "id": "objectId",
-  "email": "string",
-  "password": "string",
-  "name": "string",
-  "address": "string",
-  "phoneNumber": "string",
-  "userType": {
-    "type": "String",
-    "enum": ["owner", "customer"]
+[
+  {
+    "id": "objectId",
+    "email": "string",
+    "password": "string",
+    "name": "string",
+    "address": "string",
+    "phoneNumber": "string",
+    "userType": {
+      "type": "String",
+      "enum": ["owner", "customer"]
+    },
+    "owner": {
+      "type": "objectId",
+      "ref": "owner"
+    },
+    "customer": {
+      "type": "objectId",
+      "ref": "customer"
+    }
   },
-  "owner": {
-    "type": "objectId",
-    "ref": "owner"
-  },
-  "customer": {
-    "type": "objectId",
-    "ref": "customer"
+  {
+    "email": "mjanwarsi@gmail.com",
+    "password": "123",
+    "name": "Muhammad Zakria Jan",
+    "address": "House No E-29, HIT Taxila Cantt",
+    "userType": "owner",
+    "phoneNumber": "03139987417",
+    "licenseNumber": "123456"
   }
-}
+]
