@@ -12,13 +12,15 @@ const { mongoURI } = require("./config");
 // =============================================================
 const PORT = app.get("PORT") || 5000;
 mongoose
-  .connect(mongoURI, { useNewUrlParser: true })
+  .connect(mongoURI, {
+    useNewUrlParser: true
+  })
   .then(() => {
     console.log("MONGO DB STARTED");
     app.listen(PORT, () => console.log(`SERVER STARTED AT PORT ${PORT}`));
   })
   .catch(err => {
-    console.log("Error starting server of mongo");
+    console.log("Error starting server of mongo", err);
   });
 // =============================================================
 // MIDDLEWARES
