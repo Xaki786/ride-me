@@ -27,5 +27,13 @@
     "userType": "owner",
     "phoneNumber": "03139987417",
     "licenseNumber": "123456"
+  },
+  {
+    "email": "mjanwarsi@gmail.com",
+    "password": "123",
+    "name": "Muhammad Zakria Jan",
+    "address": "House No E-29, HIT Taxila Cantt",
+    "userType": "customer",
+    "phoneNumber": "03139987417"
   }
 ]
