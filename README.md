@@ -15,5 +15,5 @@
 - create new user => POST => http://localhost/api/users/
 - view all users => GET => http://localhost/api/users/
 - login already created user => POST => http://localhost/api/users/login
-- add cars for owner => POST => http://localhost/api/users/:userId/owner/:ownerId
-- view all cars of owner => GET => http://localhost/api/users/:userId/owner/:ownerId
+- add cars for owner => POST => http://localhost/api/users/:userId/owner/:ownerId/cars
+- view all cars of owner => GET => http://localhost/api/users/:userId/owner/:ownerId/cars
