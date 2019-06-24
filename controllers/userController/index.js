@@ -6,6 +6,7 @@ const createOwnerCar = require("./createOwnerCar");
 const createUser = require("./createUser");
 const getOwnerCars = require("./getOwnerCars");
 const getUsers = require("./getUsers");
+const getOneUser = require("./getOneUser");
 
 // ==============================================================
 // USER CONTROLLER
@@ -16,6 +17,9 @@ module.exports = {
   // VALIDATION: PENDING
   createUser,
   // VALIDATION: PENDING
+  getOneUser,
+  // VALIDATION: PENDING
+
   login: async (req, res, next) => {
     const token = await generateToken(req.user);
     return res.status(200).json({

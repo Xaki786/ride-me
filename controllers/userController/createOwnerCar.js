@@ -22,6 +22,12 @@ module.exports = async (req, res, next) => {
   // find owner
   const dbOwner = await Owner.findById(req.params.ownerId);
 
+  // If user not found send user error response
+  if (!dbUser) {
+    const error = new Error("User Not Found");
+    error.status = 404;
+    return next(error);
+  }
   // store owner in the car
   dbCar.owner = dbOwner.id;
   // store car in the owner
