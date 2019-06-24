@@ -7,6 +7,7 @@ const createUser = require("./createUser");
 const getOwnerCars = require("./getOwnerCars");
 const getUsers = require("./getUsers");
 const getOneUser = require("./getOneUser");
+const getOneOwner = require("./getOneOwner");
 
 // ==============================================================
 // USER CONTROLLER
@@ -18,6 +19,9 @@ module.exports = {
   createUser,
   // VALIDATION: PENDING
   getOneUser,
+  // VALIDATION: PENDING
+
+  getOneOwner,
   // VALIDATION: PENDING
 
   login: async (req, res, next) => {

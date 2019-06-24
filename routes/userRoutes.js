@@ -6,34 +6,41 @@ const {
   login,
   getOwnerCars,
   createOwnerCar,
-  getOneUser
+  getOneUser,
+  getOneOwner
 } = require("../controllers").userController;
 // ====================================================================
-// route => '/api/users/'
-// ====================================================================
+// @route   => '/api/users/'
+// @desc    => Get all users, Create new user
 router
   .route("/")
   .get(getUsers)
   .post(createUser);
 
 // ====================================================================
-// route => '/api/users/:userId'
-// ====================================================================
+// @route   => /api/users/:userId
+// @desc    => Show specific user
 router.route("/:userId").get(getOneUser);
+
 // ====================================================================
-// route => '/api/users/:userId/owner/:ownerid/cars'
+// @route   => /api/users/:userId/owner/:ownerId
+// @desc    => show specific owner
+router.route("/:userId/owner/:ownerId").get(getOneOwner);
+
 // ====================================================================
+// @route   => /api/users/:userId/owner/:ownerid/cars
+// @desc    => show all cars of the owner, Add New Car
 router
   .route("/:userId/owner/:ownerId/cars")
   .get(getOwnerCars)
   .post(createOwnerCar);
 
 // ====================================================================
-// route => '/api/users/:login'
-// ====================================================================
+// @route   => /api/users/:login
+// @desc    => Login User using passport local strategy
 router
   .route("/login")
   .post(passport.authenticate("local", { session: false }), login);
 
-module.exports = router;
 // ====================================================================
+module.exports = router;
