@@ -4,9 +4,9 @@
 
 #### npm commands to run
 
-- use npm start to run both client and server, (not implemented yet).
-- use npm run client to run client only, (not implemented yet).
-- use npm run server to run server only. (ready to use).
+- use npm start to run both client and server.
+- use npm run client to run client only.
+- use npm run server to run server only.
 
 ## sample user data for testing db
 

@@ -1,6 +1,15 @@
 const { User, Customer, Owner } = require("../../models");
 const generateToken = require("./generateToken");
 module.exports = async (req, res, next) => {
+  // check if user with the same email address is already present in the db
+  const foundUser = await User.findOne({ "local.email": req.body.email });
+  if (foundUser) {
+    const error = new Error(
+      "User with the same email address is already present"
+    );
+    error.status = 400;
+    return next(error);
+  }
   const {
     email,
     password,
@@ -24,7 +33,6 @@ module.exports = async (req, res, next) => {
   });
   let dbOwner = {};
   let dbCustomer = {};
-  console.log("dbUser.phoneNumber :", dbUser.phoneNumber);
   if (dbUser.userType === "owner") {
     dbOwner = new Owner({
       licenseNumber: licenseNumber,
@@ -32,16 +40,19 @@ module.exports = async (req, res, next) => {
     });
     dbUser.owner = dbOwner;
     await dbOwner.save();
-  } else {
+  } else if (dbUser.userType === "customer") {
     dbCustomer = new Customer();
     dbUser.customer = dbCustomer;
     dbCustomer.save();
+  } else {
+    const error = new Error("Unknown user type, it must be customer or owner");
+    error.status = 400;
+    return next(error);
   }
   await dbUser.save();
   const token = await generateToken(dbUser);
   return res.status(201).json({
     token,
-    message: "Signed up",
-    user: dbUser
+    message: "Signed up"
   });
 };

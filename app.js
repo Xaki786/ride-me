@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("morgan");
+const cors = require("cors");
 const { userRoutes } = require("./routes");
 const app = express();
 
@@ -25,6 +26,7 @@ mongoose
 // =============================================================
 // MIDDLEWARES
 // =============================================================
+app.use(cors());
 app.use(express.json());
 app.use(logger("dev"));
 // =============================================================
@@ -44,6 +46,9 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   const error = app.get("env") === "development" ? err : {};
   const status = err.status || 500;
+  if (app.get("env") === "development") {
+    console.error(error);
+  }
   return res.status(status).json({
     message: error.message
   });

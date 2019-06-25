@@ -20,14 +20,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function RadioButtonsGroup() {
+export default function RadioButtonsGroup(props) {
+  const { input, value, ...rest } = props;
   const classes = useStyles();
-  const [value, setValue] = React.useState("female");
-
-  function handleChange(event) {
-    setValue(event.target.value);
-  }
-
   return (
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.formControl}>
@@ -35,19 +30,20 @@ export default function RadioButtonsGroup() {
           Are you a customer or owner of the car
         </FormLabel>
         <RadioGroup
-          aria-label="Gender"
-          name="gender1"
+          aria-label="User Type"
+          {...rest}
           className={classes.group}
-          value={value}
-          onChange={handleChange}
+          value={input.value}
+          onChange={input.onChange}
         >
           <div className={classes.root}>
             <FormControlLabel
-              value="male"
+              value="customer"
+              checked={input.checked}
               control={<Radio />}
               label="Customer"
             />
-            <FormControlLabel value="other" control={<Radio />} label="Owner" />
+            <FormControlLabel value="owner" control={<Radio />} label="Owner" />
           </div>
         </RadioGroup>
       </FormControl>

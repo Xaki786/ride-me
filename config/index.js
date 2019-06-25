@@ -9,4 +9,8 @@ module.exports = {
 // ==========================================
 // mongoURI FOR Mlab
 // ==========================================
-// "mongodb://<dbuser>:<dbpassword>@ds139427.mlab.com:39427/ride-me"
+// "mongodb://ride-me:ride-me1@ds139427.mlab.com:39427/ride-me"
+// ==========================================
+// mongoURI FOR Local
+// ==========================================
+// "mongodb://localhost/ride-me"
