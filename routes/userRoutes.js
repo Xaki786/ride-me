@@ -18,6 +18,12 @@ router
   .post(createUser);
 
 // ====================================================================
+// @route   => /api/users/login
+// @desc    => Login User using passport local strategy
+router
+  .route("/login")
+  .post(passport.authenticate("local", { session: false }), login);
+// ====================================================================
 // @route   => /api/users/:userId
 // @desc    => Show specific user
 router.route("/:userId").get(getOneUser);
@@ -34,13 +40,6 @@ router
   .route("/:userId/owner/:ownerId/cars")
   .get(getOwnerCars)
   .post(createOwnerCar);
-
-// ====================================================================
-// @route   => /api/users/:login
-// @desc    => Login User using passport local strategy
-router
-  .route("/login")
-  .post(passport.authenticate("local", { session: false }), login);
 
 // ====================================================================
 module.exports = router;

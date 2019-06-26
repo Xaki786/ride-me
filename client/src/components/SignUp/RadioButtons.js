@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import {
   Radio,
   RadioGroup,
@@ -7,22 +6,11 @@ import {
   FormControl,
   FormLabel
 } from "@material-ui/core";
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex"
-  },
-  formControl: {
-    margin: theme.spacing(3)
-  },
-  group: {
-    margin: theme.spacing(1, 0)
-  }
-}));
+import Styles from "./Styles";
 
 export default function RadioButtonsGroup(props) {
   const { input, value, ...rest } = props;
-  const classes = useStyles();
+  const classes = Styles.RadioButtons();
   return (
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.formControl}>

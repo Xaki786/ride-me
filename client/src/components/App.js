@@ -1,18 +1,13 @@
-import React from "react";
-import { Provider } from "react-redux";
-import store from "../components/redux/store";
-import SignUp from "./SignUp/SignUp";
-import Test2 from "./SignUp/Test2";
+import React, { Children } from "react";
+import Header from "./Header";
 
-function App() {
+const App = ({ children }) => {
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Test2 />
-        {/* <SignUp /> */}
-      </div>
-    </Provider>
+    <div className="App">
+      <Header />
+      {children}
+    </div>
   );
-}
+};
 
 export default App;

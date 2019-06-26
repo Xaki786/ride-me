@@ -13,9 +13,19 @@ const getOneOwner = require("./getOneOwner");
 // USER CONTROLLER
 // ==============================================================
 module.exports = {
+  // ====================================================================
+  // @route   =>  '/api/users/'
+  // @desc    =>  Get all users
+  // @method  =>  GET
   // VALIDATION NOT REQUIRED
+  // ----------------------------------------------------
   getUsers,
+  // ====================================================================
+  // @route   =>  '/api/users/'
+  // @desc    =>  Create new user
+  // @method  =>  POST
   // VALIDATION: PENDING
+  // ----------------------------------------------------
   createUser,
   // VALIDATION: PENDING
   getOneUser,
@@ -26,10 +36,11 @@ module.exports = {
 
   login: async (req, res, next) => {
     const token = await generateToken(req.user);
-    return res.status(200).json({
-      token,
-      message: "Logged In"
-    });
+    return res.redirect(`/api/users/${req.user.id}?token=${token}`);
+    // return res.status(200).json({
+    //   token,
+    //   message: "Logged In"
+    // });
   },
   // VALIDATION: PENDING
   // AUTHENTICATON: PENDING
