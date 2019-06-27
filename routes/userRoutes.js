@@ -16,7 +16,9 @@ const {
   getOneOwner,
   getOwnerCars,
   createOwnerCar,
-  updateOwnerCar
+  updateOwnerCar,
+  deleteOwnerCar,
+  showOwnerCar
 } = require("../controllers").ownerController;
 // ====================================================================
 // @route   => '/api/users/'
@@ -53,6 +55,10 @@ router
 // ====================================================================
 // @route   => /api/users/:userId/owner/:ownerId/cars/:carId
 // @desc    => show all cars of the owner, Add New Car
-router.route("/:userId/owner/:ownerId/cars/:carId").put(updateOwnerCar);
+router
+  .route("/:userId/owner/:ownerId/cars/:carId")
+  .get(showOwnerCar)
+  .put(updateOwnerCar)
+  .delete(deleteOwnerCar);
 // ====================================================================
 module.exports = router;

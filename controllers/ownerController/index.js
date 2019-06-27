@@ -5,6 +5,8 @@ const createOwnerCar = require("./createOwnerCar");
 const updateOwnerCar = require("./updateOwnerCar");
 const getOwnerCars = require("./getOwnerCars");
 const getOneOwner = require("./getOneOwner");
+const deleteOwnerCar = require("./deleteOwnerCar");
+const showOwnerCar = require("./showOwnerCar");
 // ==============================================================
 // OWNER CONTROLLER
 // ==============================================================
@@ -47,6 +49,8 @@ module.exports = {
   // VALIDATION: PENDING
   // AUTHENTICATON: PENDING
   // ----------------------------------------------------
-  updateOwnerCar
+  updateOwnerCar,
+  deleteOwnerCar,
+  showOwnerCar
   // ====================================================================
 };

@@ -14,7 +14,11 @@ const ownerSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "car"
     }
-  ]
+  ],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user"
+  }
 });
 
 const ownerModel = mongoose.model("owner", ownerSchema);

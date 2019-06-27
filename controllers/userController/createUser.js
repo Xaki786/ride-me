@@ -24,9 +24,9 @@ module.exports = async (req, res, next) => {
     method: "local",
     local: {
       email,
-      password,
-      name
+      password
     },
+    name,
     address,
     userType,
     phoneNumber
