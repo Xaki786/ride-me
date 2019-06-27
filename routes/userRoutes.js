@@ -1,14 +1,23 @@
 const router = require("express-promise-router")();
 const passport = require("../passport");
+// ==============================================================
+// IMPORTING USER CONTROLLER METHODS
+// ==============================================================
 const {
   getUsers,
   createUser,
   login,
+  getOneUser
+} = require("../controllers").userController;
+// ==============================================================
+// IMPORTING OWNER CONTROLLER METHODS
+// ==============================================================
+const {
+  getOneOwner,
   getOwnerCars,
   createOwnerCar,
-  getOneUser,
-  getOneOwner
-} = require("../controllers").userController;
+  updateOwnerCar
+} = require("../controllers").ownerController;
 // ====================================================================
 // @route   => '/api/users/'
 // @desc    => Get all users, Create new user
@@ -34,12 +43,16 @@ router.route("/:userId").get(getOneUser);
 router.route("/:userId/owner/:ownerId").get(getOneOwner);
 
 // ====================================================================
-// @route   => /api/users/:userId/owner/:ownerid/cars
+// @route   => /api/users/:userId/owner/:ownerId/cars
 // @desc    => show all cars of the owner, Add New Car
 router
   .route("/:userId/owner/:ownerId/cars")
   .get(getOwnerCars)
   .post(createOwnerCar);
 
+// ====================================================================
+// @route   => /api/users/:userId/owner/:ownerId/cars/:carId
+// @desc    => show all cars of the owner, Add New Car
+router.route("/:userId/owner/:ownerId/cars/:carId").put(updateOwnerCar);
 // ====================================================================
 module.exports = router;

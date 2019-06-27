@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("morgan");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const { userRoutes } = require("./routes");
 const app = express();
@@ -11,14 +12,21 @@ const { mongoURI } = require("./config");
 // =============================================================
 // START MONGO AND SERVER
 // =============================================================
+mongoose.set("useNewUrlParser", true);
+mongoose.set("useFindAndModify", false);
+mongoose.set("useCreateIndex", true);
 const PORT = app.get("PORT") || 5000;
 mongoose
   .connect(mongoURI, {
     useNewUrlParser: true
   })
   .then(() => {
+    console.log("===========================================");
     console.log("MONGO DB STARTED");
-    app.listen(PORT, () => console.log(`SERVER STARTED AT PORT ${PORT}`));
+    app.listen(PORT, () => {
+      console.log(`SERVER STARTED AT PORT ${PORT}`);
+      console.log("===========================================");
+    });
   })
   .catch(err => {
     console.log("Error starting server of mongo", err);
@@ -27,7 +35,7 @@ mongoose
 // MIDDLEWARES
 // =============================================================
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 app.use(logger("dev"));
 // =============================================================
 // ROUTES

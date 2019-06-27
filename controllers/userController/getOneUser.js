@@ -56,7 +56,7 @@ module.exports = async (req, res, next) => {
       return res.send("Hi from customer profile");
     }
     // ---------------------------------------------------------
-    // check if the user type is undefined then send error
+    // user type is undefined so send error
     // ---------------------------------------------------------
     else {
       const error = new Error("Invalid User");

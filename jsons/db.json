@@ -21,12 +21,12 @@
   "cars": [
     {
       "carNumber": "12345678",
-      "insuranceNumber": "12123",
       "insuranceAmount": 123123,
       "propertyTax": 123123,
       "tyreCost": 12323,
+      "emissionCost": 13124324,
       "serviceCost": 1323123,
-      "lastReading": 123123
+      "Milage": 433123
     }
   ]
 }

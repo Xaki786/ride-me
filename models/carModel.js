@@ -20,15 +20,16 @@ const carSchema = new mongoose.Schema({
       ref: "bill"
     }
   ],
-  insuranceNumber: String,
   insuranceAmount: Number,
   propertyTax: Number,
   tyreCost: Number,
+  emissionCost: Number,
   serviceCost: Number,
-  lastReading: {
-    type: Number,
-    required: true
-  }
+  milage: Number
+  // lastReading: {
+  //   type: Number,
+  //   required: true
+  // }
   //   I don't know what these are
   //   lastBooking: Number",
   //   nextBooking: "Number(confused)"
