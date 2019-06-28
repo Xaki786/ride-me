@@ -2,7 +2,7 @@
 // GENERATING TOKENS FOR AUTHORIZED USER
 // ==============================================================
 const JWT = require("jsonwebtoken");
-const { jwtSecret } = require("../../config");
+const { jwtSecret } = require("../config");
 module.exports = generateToken = user => {
   return JWT.sign(
     {

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { userRoutes } = require("./routes");
+const { userRoutes, carRoutes, ownerRoutes, authRoutes } = require("./routes");
 const app = express();
 
 // =============================================================
@@ -39,7 +39,11 @@ app.use(bodyParser.json());
 app.use(logger("dev"));
 // =============================================================
 // ROUTES
-app.use("/api/users", userRoutes);
+const baseURI = "/api/users";
+app.use(`${baseURI}/`, userRoutes);
+app.use(`${baseURI}/auth`, authRoutes);
+app.use(`${baseURI}/:userId/owner/`, ownerRoutes);
+app.use(`${baseURI}/:userId/owner/:ownerId/cars`, carRoutes);
 // =============================================================
 // ERROR MIDDLEWARE FOR PAGE NOT FOUND
 // =============================================================
@@ -61,5 +65,4 @@ app.use((err, req, res, next) => {
     message: error.message
   });
 });
-// =============================================================
 // =============================================================

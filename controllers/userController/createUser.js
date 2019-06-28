@@ -1,5 +1,5 @@
 const { User, Customer, Owner } = require("../../models");
-const generateToken = require("./generateToken");
+const generateToken = require("../../helpers/generateToken");
 module.exports = async (req, res, next) => {
   // check if user with the same email address is already present in the db
   const foundUser = await User.findOne({ "local.email": req.body.email });
@@ -19,7 +19,6 @@ module.exports = async (req, res, next) => {
     userType,
     licenseNumber
   } = req.body;
-  console.log("userType :", userType);
   const dbUser = new User({
     method: "local",
     local: {
@@ -51,8 +50,10 @@ module.exports = async (req, res, next) => {
   }
   await dbUser.save();
   const token = await generateToken(dbUser);
-  return res.status(201).json({
-    token,
-    message: "Signed up"
-  });
+  // REDIRECTING USER TO THE PROFILE PAGE
+  return res.redirect(`/api/users/${dbUser.id}?token=${token}`);
+  // return res.status(201).json({
+  //   token,
+  //   message: "Signed up"
+  // });
 };
