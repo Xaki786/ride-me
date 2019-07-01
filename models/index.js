@@ -1,3 +1,6 @@
+// ============================================================
+// IMPORTING ALL THE MODELS AND COMBINING THEM IN AN OBJECT
+// ============================================================
 const userModel = require("./userModel");
 const customerModel = require("./customerModel");
 const bookingModel = require("./bookingModel");

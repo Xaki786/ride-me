@@ -54,7 +54,7 @@ const baseURI = "/api/users";
 app.use(`${baseURI}/`, userRoutes);
 app.use(`${baseURI}/auth`, authRoutes);
 app.use(`${baseURI}/:userId/owner/`, ownerRoutes);
-app.use(`${baseURI}/:userId/customer/`, ownerRoutes);
+app.use(`${baseURI}/:userId/customer/`, customerRoutes);
 app.use(`${baseURI}/:userId/owner/:ownerId/cars`, carRoutes);
 // =============================================================
 // ERROR MIDDLEWARE FOR PAGE NOT FOUND
