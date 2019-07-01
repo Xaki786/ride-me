@@ -3,11 +3,21 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { userRoutes, carRoutes, ownerRoutes, authRoutes } = require("./routes");
+// ==============================================================
+// IMPORTING ROUTES
+// ==============================================================
+const {
+  userRoutes,
+  carRoutes,
+  ownerRoutes,
+  authRoutes,
+  customerRoutes
+} = require("./routes");
 const app = express();
 
 // =============================================================
-// KEYS
+// IMPORTING KEYS
+// =============================================================
 const { mongoURI } = require("./config");
 // =============================================================
 // START MONGO AND SERVER
@@ -37,12 +47,14 @@ mongoose
 app.use(cors());
 app.use(bodyParser.json());
 app.use(logger("dev"));
-// =============================================================
-// ROUTES
+// -----------------------------------
+// ROUTES MIDDLEWARES
+// -----------------------------------
 const baseURI = "/api/users";
 app.use(`${baseURI}/`, userRoutes);
 app.use(`${baseURI}/auth`, authRoutes);
 app.use(`${baseURI}/:userId/owner/`, ownerRoutes);
+app.use(`${baseURI}/:userId/customer/`, ownerRoutes);
 app.use(`${baseURI}/:userId/owner/:ownerId/cars`, carRoutes);
 // =============================================================
 // ERROR MIDDLEWARE FOR PAGE NOT FOUND

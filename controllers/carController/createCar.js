@@ -53,11 +53,11 @@ module.exports = async (req, res, next) => {
   dbOwner.cars.push(dbCar.id);
 
   // ---------------------------------------------------------
-  // SAVE THE OWNER
+  // SAVE THE OWNER IN THE DATABASE
   // ---------------------------------------------------------
   await dbOwner.save();
   // ---------------------------------------------------------
-  // SAVE THE CAR
+  // SAVE THE CAR IN THE DATABASE
   // ---------------------------------------------------------
   await dbCar.save();
   // ---------------------------------------------------------
