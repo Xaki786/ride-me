@@ -12,8 +12,21 @@
 
 ## user endpoints
 
-- create new user => POST => http://localhost:5000/api/users/
+- create new user => Register New User => POST => http://localhost:5000/api/users/
 - view all users => GET => http://localhost:5000/api/users/
+- view single user => GET => http://localhost:5000/api/users/:userId
 - login already created user => POST => http://localhost:5000/api/users/login
+
+### owner endpoints
+
+- create owner => specify userType in user body as owner => POST => http://localhost:5000/api/users/
+- view single owner => GET => http://localhost:5000/api/users/:userId/owner/:ownerId
+- delete single owner => DELETE => http://localhost:5000/api/users/:userId/owner/:ownerId
+
+## car endpoints
+
+- view all cars of the specific owner => GET => http://localhost:5000/api/users/:userId/owner/:ownerId/cars
 - add cars for owner => POST => http://localhost:5000/api/users/:userId/owner/:ownerId/cars
-- view all cars of owner => GET => http://localhost:5000/api/users/:userId/owner/:ownerId/cars
+- view single car detail => GET => http://localhost:5000/api/users/:userId/owner/:ownerId/cars/:carId
+- edit single car => PUT => http://localhost:5000/api/users/:userId/owner/:ownerId/cars/:carId
+- delete single car => DELETE => http://localhost:5000/api/users/:userId/owner/:ownerId/cars/:carId

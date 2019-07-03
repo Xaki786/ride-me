@@ -23,12 +23,12 @@ module.exports = async (req, res, next) => {
   // ----------------------------------------------------
   // CHECK IF USER PRESENT IN OWNER'S DOCUMENT IS SAME AS PROVIDED IN THE PARAMS
   // ----------------------------------------------------
-  // const isValidUser = await dbOwner.isValidUser(userId);
-  // if (!isValidUser) {
-  //   const error = new Error("Invalid User");
-  //   error.status = 400;
-  //   return next(error);
-  // }
+  const isValidUser = await dbOwner.isValidUser(userId);
+  if (!isValidUser) {
+    const error = new Error("Invalid User");
+    error.status = 400;
+    return next(error);
+  }
   // ----------------------------------------------------
   // OWNER FOUND AND USER IN THE PARAMS AND DOCUMENT ARE THE SAME, NOW SEARCH FOR THE DB USER
   // ----------------------------------------------------
@@ -49,7 +49,7 @@ module.exports = async (req, res, next) => {
   // ----------------------------------------------------
   // DELETE THE OWNER
   // ----------------------------------------------------
-  await User.findByIdAndDelete(ownerId);
+  await Owner.findByIdAndDelete(ownerId);
   // ----------------------------------------------------
   // REDIRECT USER TO THE GET USERS API
   // ----------------------------------------------------

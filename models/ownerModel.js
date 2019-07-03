@@ -22,9 +22,7 @@ const ownerSchema = new mongoose.Schema({
 });
 
 ownerSchema.methods.isValidUser = async function(userId) {
-  // console.log(this);
-  // console.log(this.user, userId);
-  return await this._id.equals(userId);
+  return await this.user._id.equals(userId);
 };
 const ownerModel = mongoose.model("owner", ownerSchema);
 module.exports = ownerModel;
