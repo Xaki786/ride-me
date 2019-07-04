@@ -10,23 +10,48 @@
 
 ## sample user data for testing db
 
-## user endpoints
+## Admin endpoints
 
-- create new user => Register New User => POST => http://localhost:5000/api/users/
-- view all users => GET => http://localhost:5000/api/users/
-- view single user => GET => http://localhost:5000/api/users/:userId
-- login already created user => POST => http://localhost:5000/api/users/login
+- view all owners => GET => /api/admin/owners
+- view all users => GET => /api/admin/users/
 
-### owner endpoints
+## User endpoints
 
-- create owner => specify userType in user body as owner => POST => http://localhost:5000/api/users/
-- view single owner => GET => http://localhost:5000/api/users/:userId/owner/:ownerId
-- delete single owner => DELETE => http://localhost:5000/api/users/:userId/owner/:ownerId
+- create new user => Register New User => POST => /api/users/
+- view single user => GET => /api/users/:userId
 
-## car endpoints
+## Auth endpoints
 
-- view all cars of the specific owner => GET => http://localhost:5000/api/users/:userId/owner/:ownerId/cars
-- add cars for owner => POST => http://localhost:5000/api/users/:userId/owner/:ownerId/cars
-- view single car detail => GET => http://localhost:5000/api/users/:userId/owner/:ownerId/cars/:carId
-- edit single car => PUT => http://localhost:5000/api/users/:userId/owner/:ownerId/cars/:carId
-- delete single car => DELETE => http://localhost:5000/api/users/:userId/owner/:ownerId/cars/:carId
+- login already created user => POST => /api/users/auth/login
+- register a new user => POST => /api/users/auth/signup
+
+### Owner endpoints
+
+- create owner => specify userType in user body as owner => POST => /api/users/
+- view single owner => GET => /api/users/:userId/owner/:ownerId
+- update profile of an owner
+- delete single owner => DELETE => /api/users/:userId/owner/:ownerId
+
+### Customer endpoints
+
+- view all customers
+- create single customer
+- view single cuctomer
+- update customer's profile
+- delete single customer
+
+## Car endpoints
+
+- view all cars of the specific owner => GET => /api/users/:userId/owner/:ownerId/cars
+- add cars for owner => POST => /api/users/:userId/owner/:ownerId/cars
+- view single car detail => GET => /api/users/:userId/owner/:ownerId/cars/:carId
+- edit single car => PUT => /api/users/:userId/owner/:ownerId/cars/:carId
+- delete single car => DELETE => /api/users/:userId/owner/:ownerId/cars/:carId
+
+## Booking endpoints
+
+- view all bookings
+- create booking
+- view single booking
+- update booking
+- delete booking

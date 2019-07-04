@@ -6,6 +6,7 @@ const carRoutes = require("./carRoutes");
 const ownerRoutes = require("./ownerRoutes");
 const authRoutes = require("./authRoutes");
 const customerRoutes = require("./customerRoutes");
+const adminRoutes = require("./adminRoutes");
 // ==============================================================
 // EXPORTING ROUTES AS NAMED EXPORTS
 // ==============================================================
@@ -14,5 +15,6 @@ module.exports = {
   carRoutes,
   ownerRoutes,
   authRoutes,
-  customerRoutes
+  customerRoutes,
+  adminRoutes
 };
