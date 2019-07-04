@@ -7,8 +7,8 @@ const billSchema = new mongoose.Schema({
   },
   car: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "car",
-    required: true
+    ref: "car"
+    // required: true
   },
   date: {
     type: Date,

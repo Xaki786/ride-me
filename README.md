@@ -52,8 +52,7 @@
 
 ## Booking endpoints
 
-- view all bookings
-- create booking
+- create booking => POST => /api/users/:userId/customer/:customerId/booking
 - view single booking
 - update booking
 - delete booking

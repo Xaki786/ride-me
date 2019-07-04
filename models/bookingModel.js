@@ -23,29 +23,29 @@ const bookingSchema = new mongoose.Schema({
     required: true
   },
   readingStart: {
-    type: Number,
-    required: true
+    type: Number
+    // required: true
   },
   readingEnd: {
-    type: Number,
-    required: true
+    type: Number
+    // required: true
   },
   distance: {
-    type: Number,
-    required: true
+    type: Number
+    // required: true
     // calculate by subtrating endDistance from start
   },
   petrolUsed: {
-    type: Number,
-    required: true
+    type: Number
+    // required: true
   },
   checkInPlace: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   checkOutPlace: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   damageCost: Number
 });

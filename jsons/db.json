@@ -28,5 +28,19 @@
       "serviceCost": 1323123,
       "Milage": 433123
     }
+  ],
+  "bookings": [
+    {
+      "car": "carId",
+      "priority": "Number(confused)",
+      "date": "string",
+      "readingStart": "Number",
+      "readingEnd": "Number",
+      "distance": "Number(end-start)",
+      "petrolUsed": "Number",
+      "checkInPlace": "String",
+      "checkOutPlace": "String",
+      "damageCost": "Number"
+    }
   ]
 }

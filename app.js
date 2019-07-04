@@ -12,7 +12,8 @@ const {
   ownerRoutes,
   authRoutes,
   customerRoutes,
-  adminRoutes
+  adminRoutes,
+  bookingRoutes
 } = require("./routes");
 const app = express();
 
@@ -60,6 +61,7 @@ app.use(`${UsersURI}/`, userRoutes);
 app.use(`${UsersURI}/auth`, authRoutes);
 app.use(`${UsersURI}/:userId/owner/`, ownerRoutes);
 app.use(`${UsersURI}/:userId/customer/`, customerRoutes);
+app.use(`${UsersURI}/:userId/customer/:customerId/bookings`, bookingRoutes);
 app.use(`${UsersURI}/:userId/owner/:ownerId/cars`, carRoutes);
 // =============================================================
 // ERROR MIDDLEWARE FOR PAGE NOT FOUND
