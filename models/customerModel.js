@@ -12,5 +12,8 @@ const customerSchema = new mongoose.Schema({
   }
 });
 
+customerSchema.methods.isValidUser = async function(userId) {
+  return await this.user._id.equals(userId);
+};
 const customerModel = mongoose.model("customer", customerSchema);
 module.exports = customerModel;

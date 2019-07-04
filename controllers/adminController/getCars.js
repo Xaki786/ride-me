@@ -1,20 +1,20 @@
-const { Owner } = require("../../models");
+const { Car } = require("../../models");
 // ====================================================================
-// GET ALL OWNERS FROM DATABASE
+// GET ALL CARS FROM DATABASE
 // ====================================================================
-// @route   =>  /api/admin/owners/
+// @route   =>  /api/admin/cars
 // @method  =>  GET
 // ----------------------------------------------------
 module.exports = async (req, res, next) => {
   // ----------------------------------------------------
-  //  FIND ALL OWNERS IN THE DATABASE
+  //  FIND ALL CARS IN THE DATABASE
   // ----------------------------------------------------
-  const dbOwners = await Owner.find();
+  const dbCars = await Car.find();
   // ----------------------------------------------------
   //  IF NO OWNERS ARE THERE, THEN SEND USER 404 RESPONSE
   // ----------------------------------------------------
-  if (!dbOwners.length > 0) {
-    const error = new Error("No owners found");
+  if (!dbCars.length > 0) {
+    const error = new Error("No Cars found");
     error.status = 404;
     return next(error);
   }
@@ -22,6 +22,6 @@ module.exports = async (req, res, next) => {
   //  OWNERS FOUND, SEND USER THIS DATA
   // ----------------------------------------------------
   return res.status(200).json({
-    owners: dbOwners
+    cars: dbCars
   });
 };

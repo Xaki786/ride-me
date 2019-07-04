@@ -5,7 +5,8 @@ const router = require("express-promise-router")({ mergeParams: true });
 const {
   getOwners,
   getCustomers,
-  getUsers
+  getUsers,
+  getCars
 } = require("../controllers").adminController;
 // ==============================================================
 // ---------------------------------------------------
@@ -23,5 +24,10 @@ router.route("/customers").get(getCustomers);
 // @desc    => get all users
 // ---------------------------------------------------
 router.route("/users").get(getUsers);
+// ---------------------------------------------------
+// @route   => /api/admin/cars
+// @desc    => get all cars
+// ---------------------------------------------------
+router.route("/cars").get(getCars);
 // ==============================================================
 module.exports = router;

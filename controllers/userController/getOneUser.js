@@ -1,4 +1,4 @@
-const { User, Owner } = require("../../models");
+const { User, Customer, Owner } = require("../../models");
 module.exports = async (req, res, next) => {
   const dbUser = await User.findById(req.params.userId);
   // ---------------------------------------------------------
@@ -23,7 +23,7 @@ module.exports = async (req, res, next) => {
       // if there is no owner present inside the databse then send error
       // ---------------------------------------------------------
       if (!dbOwner) {
-        const error = new Error("Owner Not Found");
+        const error = new Error("Not a registered owner");
         error.status = 404;
         return next(error);
       }
@@ -50,10 +50,43 @@ module.exports = async (req, res, next) => {
       });
 
       // ---------------------------------------------------------
-      // check if the user type is customer then send the owner detail
+      // check if the user type is customer then send the customer detail
       // ---------------------------------------------------------
     } else if (dbUser.userType === "customer") {
-      return res.send("Hi from customer profile");
+      // ---------------------------------------------------------
+      // find customer in the database from customer id stored inside user and fetch details of bookings from the database
+      // ---------------------------------------------------------
+      const dbCustomer = await Customer.findById(dbUser.customer).populate(
+        "bookings"
+      );
+
+      // ---------------------------------------------------------
+      // if there is no customer present inside the databse then send error
+      // ---------------------------------------------------------
+      if (!dbCustomer) {
+        const error = new Error("Not a registered customer");
+        error.status = 404;
+        return next(error);
+      }
+
+      // ---------------------------------------------------------
+      // customer is found, now combine user info and customer info and send it to the frontend to show the profile page
+      // ---------------------------------------------------------
+      const {
+        address,
+        userType,
+        phoneNumber,
+        local: { email, name }
+      } = dbUser;
+      const { bookings } = dbCustomer;
+      return res.status(200).json({
+        email,
+        name,
+        address,
+        userType,
+        phoneNumber,
+        bookings
+      });
     }
     // ---------------------------------------------------------
     // user type is undefined so send error

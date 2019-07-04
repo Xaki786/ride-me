@@ -14,6 +14,9 @@
 
 - view all owners => GET => /api/admin/owners
 - view all users => GET => /api/admin/users/
+- view all customers => GET => /api/admin/customers/
+- view all cars => GET => /api/admin/cars
+- view all bookings
 
 ## User endpoints
 
@@ -34,11 +37,10 @@
 
 ### Customer endpoints
 
-- view all customers
-- create single customer
-- view single cuctomer
+- create single customer => specify userType in user body as customer => POST => /api/users/
+- view single cuctomer => GET => /api/users/:userId/customer/:customerId
 - update customer's profile
-- delete single customer
+- delete single customer => DELETE => /api/users/:userId/customer/:customerId
 
 ## Car endpoints
 

@@ -6,6 +6,7 @@ const ownerController = require("./ownerController/index");
 const carController = require("./carController/index");
 const authController = require("./authController");
 const adminController = require("./adminController");
+const customerController = require("./customerController");
 // ==============================================================
 // EXPORTING CONTROLLERS AS NAMED EXPORTS
 // ==============================================================
@@ -14,5 +15,6 @@ module.exports = {
   ownerController,
   carController,
   authController,
-  adminController
+  adminController,
+  customerController
 };
