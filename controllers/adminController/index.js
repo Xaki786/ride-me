@@ -5,6 +5,7 @@ const getOwners = require("./getOwners");
 const getCustomers = require("./getCustomers");
 const getUsers = require("./getUsers");
 const getCars = require("./getCars");
+const getBookings = require("./getBookings");
 module.exports = {
   // ====================================================================
   // GET ALL OWNERS FROM DATABASE
@@ -45,7 +46,8 @@ module.exports = {
   // AUTHENTICATION: PENDING
   // AUTHORIZATION: PENDING
   // ----------------------------------------------------
-  getCars
+  getCars,
+  getBookings
 };
 
 // get users

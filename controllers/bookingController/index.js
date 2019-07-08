@@ -2,6 +2,8 @@
 // IMPORTING BOOKING CONTROLLER METHODS
 // ==============================================================
 const createBooking = require("./createBooking");
+const getOneBooking = require("./getOneBooking");
+const updateBooking = require("./updateBooking");
 // ==============================================================
 module.exports = {
   // ============================================================
@@ -13,6 +15,26 @@ module.exports = {
   // VALIDATION: PENDING
   // AUTHENTICATON: PENDING
   // ----------------------------------------------------
-  createBooking
+  createBooking,
+  // ============================================================
+  // GET DATA OF A BOOKING
+  // ============================================================
+  // ROUTE   =>  /api/users/:userId/customer/:customerId/bookings/:bookingId
+  // METHOD  =>  GET
+  // ----------------------------------------------------
+  // VALIDATION: PENDING
+  // AUTHENTICATON: PENDING
+  // ----------------------------------------------------
+  getOneBooking,
+  // ============================================================
+  // EDIT AN ALREADY EXISTING BOOKING IN THE DATABASE AND SOTRE NEW CUSTOMER DATA IN IT
+  // ============================================================
+  // ROUTE   =>  /api/users/:userId/customer/:customerId/bookings/:bookingId
+  // METHOD  =>  PUT
+  // ----------------------------------------------------
+  // VALIDATION: PENDING
+  // AUTHENTICATON: PENDING
+  // ----------------------------------------------------
+  updateBooking
   // ============================================================
 };

@@ -1,9 +1,9 @@
 const { Customer, Car, Booking, Bill } = require("../../models");
 // =============================================================
-// CREATE A NEW BOOKING ENTRY IN THE DATABASE AND SEND CUSTOMER BOOKING'S DETAIL
+// EDIT THE ALRREADY STORED BOOKING, AND STORE NEW CUSTOMER'S DATA IN THE BOOKING
 // =============================================================
 module.exports = async (req, res, next) => {
-  const { customerId } = req.params;
+  const { customerId, bookingId } = req.params;
   const { car } = req.body;
   // ----------------------------------------------------------
   //   FIND CUSTOMER IN THE DATABASE
@@ -30,23 +30,19 @@ module.exports = async (req, res, next) => {
     return next(error);
   }
   // ----------------------------------------------------------
-  // CAR FOUND, NOW CREATE NEW BOOKING INSTANCE
+  // CAR FOUND, NOW FIND THE VALIDITY OF EXISTING BOOKING
+  const dbBooking = await Booking.findById(bookingId);
+  if (!dbBooking) {
+    const error = new Error("Invalid Booking");
+    error.status = 400;
+    return next(error);
+  }
+  // BOOKING IS VALID, NOW STORE NEW CUSTOMER IN THE BOOKING
   // STORE CUSTOMER ID AND CAR ID IN THE BOOKING AND VICE VERSA
   // ----------------------------------------------------------
-  const newBooking = new Booking({
-    car: dbCar.id
-  });
-  newBooking.customers.push(dbCustomer.id);
-  dbCustomer.bookings.push(newBooking);
-  dbCar.bookings.push(newBooking);
-  // ----------------------------------------------------------
-  //   NOW CREATE A BILL INSTANCE AND SAVE IT'S ID IN BOOKINGS AND VICE VERSA
-  // ----------------------------------------------------------
-  const newBill = new Bill({
-    booking: newBooking.id,
-    paid: true
-  });
-  newBooking.bill = newBill;
+  dbBooking.customers.push(dbCustomer.id);
+  dbCustomer.bookings.push(dbBooking);
+
   // ----------------------------------------------------------
   //   ADD OTHER OPTIONAL FIELDS TO THE BOOKING INSTANCE
   // ----------------------------------------------------------
@@ -61,16 +57,13 @@ module.exports = async (req, res, next) => {
   // ----------------------------------------------------------
   // SAVE CUSTOMER IN THE DATABASE
   await dbCustomer.save();
-  // SAVE CAR IN THE DATABASE
-  await dbCar.save();
-  // SAVE BILL IN THE DATABASE
-  await newBill.save();
+
   // SAVE BOOKING IN THE DATABASE
-  await newBooking.save();
+  await dbBooking.save();
   // REDIRECT USER TO THE VIEW BOOKING PAGE
   return res.redirect(
     `/api/users/${dbCustomer.user}/customer/${customerId}/bookings/${
-      newBooking.id
+      dbBooking.id
     }`
   );
 };

@@ -6,7 +6,8 @@ const {
   getOwners,
   getCustomers,
   getUsers,
-  getCars
+  getCars,
+  getBookings
 } = require("../controllers").adminController;
 // ==============================================================
 // ---------------------------------------------------
@@ -29,5 +30,10 @@ router.route("/users").get(getUsers);
 // @desc    => get all cars
 // ---------------------------------------------------
 router.route("/cars").get(getCars);
+// ---------------------------------------------------
+// @route   => /api/admin/bookings
+// @desc    => get all bookings
+// ---------------------------------------------------
+router.route("/bookings").get(getBookings);
 // ==============================================================
 module.exports = router;
