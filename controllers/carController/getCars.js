@@ -34,11 +34,15 @@ module.exports = async (req, res, next) => {
   }
 
   // ---------------------------------------------------------
-  // OWNER FOUND, NOW RETURN CARS OF THE USER IF CARS ARE PRESENT
+  // OWNER FOUND, NOW RETURN CARS OF THE USER WHICH ARE NOT DELETED IN THE PAST
   // ---------------------------------------------------------
   if (dbOwner.cars.length > 0) {
+    // ---------------------------------------------------------
+    //  RETURN ONLY NON-DELETED CARS
+    // ---------------------------------------------------------
+    const cars = dbOwner.cars.filter(car => car.isDeleted !== true);
     return res.status(200).json({
-      cars: dbOwner.cars
+      cars: cars
     });
   }
 

@@ -29,6 +29,15 @@ module.exports = async (req, res, next) => {
     error.status = 400;
     return next(error);
   }
+  // ---------------------------------------------------------
+  // CHECK WHETHER THIS CAR HAS BEEN DELETED IN PAST
+  // ---------------------------------------------------------
+  const isValidCar = await dbCar.isValidCar();
+  if (!isValidCar) {
+    const error = new Error("Please select a valid car");
+    error.status = 400;
+    return next(error);
+  }
   // ----------------------------------------------------------
   // CAR FOUND, NOW CREATE NEW BOOKING INSTANCE
   // STORE CUSTOMER ID AND CAR ID IN THE BOOKING AND VICE VERSA

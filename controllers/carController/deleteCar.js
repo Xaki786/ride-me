@@ -32,18 +32,10 @@ module.exports = async (req, res, next) => {
     error.status = 404;
     return next(error);
   }
+  // ENABLE CAR PROPERTY IS DELETED TO BE TRUE
   // ---------------------------------------------------
-  // FIND CAR IN THE OWNER'S CAR ARRAY AND DELETE IT'S REFERENCE
-  // ---------------------------------------------------
-  dbOwner.cars.pull(carId);
-  // ---------------------------------------------------
-  // SAVE THE EDITED USER
-  // ---------------------------------------------------
-  await dbOwner.save();
-  // ---------------------------------------------------
-  // DELETE THE CAR FROM CARS COLLECTION
-  // ---------------------------------------------------
-  await Car.findByIdAndDelete(carId);
+  dbCar.isDeleted = true;
+  await dbCar.save();
   // ---------------------------------------------------
   // SEND RESPONSE TO THE USER
   // ---------------------------------------------------

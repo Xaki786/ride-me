@@ -11,12 +11,27 @@ module.exports = async (req, res, next) => {
   // ---------------------------------------------------------
   const dbCar = await Car.findById(req.params.carId).populate({
     path: "bookings",
-    populate: { path: "customers", populate: { path: "user", select: "name" } }
+    populate: {
+      path: "customers",
+      populate: {
+        path: "user",
+        select: "name"
+      }
+    }
   });
   // ---------------------------------------------------------
   // IF CAR NOT FOUND, SEND USER AN ERROR
   // ---------------------------------------------------------
   if (!dbCar) {
+    const error = new Error("Car Not Found");
+    error.status = 404;
+    return next(error);
+  }
+  // ---------------------------------------------------------
+  // CHECK WHETHER THIS CAR HAS BEEN DELETED IN PAST
+  // ---------------------------------------------------------
+  const isValidCar = await dbCar.isValidCar();
+  if (!isValidCar) {
     const error = new Error("Car Not Found");
     error.status = 404;
     return next(error);
