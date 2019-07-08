@@ -1,4 +1,4 @@
-# ride-me, ssh test
+# ride-me
 
 ## An application for users to book a ride of a car
 
