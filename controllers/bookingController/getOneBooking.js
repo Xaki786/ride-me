@@ -1,8 +1,11 @@
 // IMPORT REDUIRED MODELS => USER, CUSTOMER, BOOKING
 const { User, Customer, Booking } = require("../../models");
 module.exports = async (req, res, next) => {
+  // -------------------------------------------------------
   // GET => /api/users/:userId/customer/:customerId/bookings/:bookingId
+  // -------------------------------------------------------
   // CHECK IF THERE IS A VALID USER
+  // -------------------------------------------------------
   const { userId, customerId, bookingId } = req.params;
   const dbUser = await User.findById(userId);
   if (!dbUser) {
@@ -10,14 +13,18 @@ module.exports = async (req, res, next) => {
     error.status = 400;
     return next(error);
   }
+  // -------------------------------------------------------
   // CHECK IF THERE IS A VALID CUSTOMER
+  // -------------------------------------------------------
   const dbCustomer = await Customer.findById(customerId);
   if (!dbCustomer) {
     const error = new Error("Invalid Customer");
     error.status = 400;
     return next(error);
   }
+  // -------------------------------------------------------
   //   CHECK IF USER IS SAME AS PROVIDED IN CUSTOMER'S DOCUMENT
+  // -------------------------------------------------------
   const isValidUser = await dbCustomer.isValidUser(dbUser.id);
   if (!isValidUser) {
     const error = new Error("Invalid User Second");

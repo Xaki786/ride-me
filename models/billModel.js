@@ -23,8 +23,8 @@ const billSchema = new mongoose.Schema({
   // ========================================
   // confused as I don't know how to calculate cost per head of customer if their destinations are different
   paid: {
-    type: Boolean,
-    required: true
+    type: Boolean
+    // required: true
   }
 });
 

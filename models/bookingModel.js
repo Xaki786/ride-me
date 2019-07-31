@@ -1,21 +1,29 @@
 const mongoose = require("mongoose");
 const bookingSchema = new mongoose.Schema({
-  customers: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "customer",
-      required: true
-    }
-  ],
-  car: {
+  isDeleted: {
+    type: Boolean,
+    default: false
+  },
+  // customers: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "customer",
+  //     required: true
+  //   }
+  // ],
+  // car: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "car",
+  //   required: true
+  // },
+  group: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "car",
-    required: true
+    ref: "group"
   },
   bill: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "bill",
-    required: true
+    ref: "bill"
+    // required: true
   },
   date: {
     type: String,
@@ -49,6 +57,11 @@ const bookingSchema = new mongoose.Schema({
   },
   damageCost: Number
 });
-
+bookingSchema.methods.findCustomerIndex = async function(customerId) {
+  const index = await this.customers.findIndex(customer =>
+    customer.id.equals(customerId)
+  );
+  return index > -1;
+};
 const bookingModel = mongoose.model("booking", bookingSchema);
 module.exports = bookingModel;

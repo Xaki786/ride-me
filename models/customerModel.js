@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const customerSchema = new mongoose.Schema({
-  bookings: [
+  groups: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "booking"
+      ref: "group"
     }
   ],
   user: {

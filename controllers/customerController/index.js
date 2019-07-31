@@ -3,6 +3,7 @@
 // ==============================================================
 const getOneCustomer = require("./getOneCustomer");
 const deleteOneCustomer = require("./deleteOneCustomer");
+const getBookedCars = require("./getBookedCars");
 // ==============================================================
 // CUSTOMER CONTROLLER
 // ==============================================================
@@ -28,5 +29,6 @@ module.exports = {
   // AUTHENTICATION: PENDING
   // AUTHORIZATION: PENDING
   // ----------------------------------------------------
-  deleteOneCustomer
+  deleteOneCustomer,
+  getBookedCars
 };

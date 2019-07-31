@@ -12,10 +12,10 @@ const carSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "owner"
   },
-  bookings: [
+  groups: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "booking"
+      ref: "group"
     }
   ],
   bills: [

@@ -4,7 +4,8 @@ const router = require("express-promise-router")({ mergeParams: true });
 // ==============================================================
 const {
   getOneCustomer,
-  deleteOneCustomer
+  deleteOneCustomer,
+  getBookedCars
 } = require("../controllers").customerController;
 // ==============================================================
 // ---------------------------------------------------
@@ -15,5 +16,7 @@ router
   .route("/:customerId")
   .get(getOneCustomer)
   .delete(deleteOneCustomer);
+// ==============================================================
+router.route("/:customerId/cars").get(getBookedCars);
 // ==============================================================
 module.exports = router;

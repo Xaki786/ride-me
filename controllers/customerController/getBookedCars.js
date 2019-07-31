@@ -1,17 +1,24 @@
 // ====================================================================
-// DELETE CUSTOMER OF THE CAR
+// GET LIST OF BOOKED CARS
 // ====================================================================
-const { User, Customer } = require("../../models");
+const { User, Customer, Car, Booking } = require("../../models");
 // ====================================================================
-// @ROUTE   =>  /api/users/:userId/customer/:customerId/
-// @METHOD  =>  DELETE
+// @ROUTE   =>  /api/users/:userId/customer/:customerId/cars
+// @METHOD  =>  GET
 // ----------------------------------------------------
 module.exports = async (req, res, next) => {
   // ----------------------------------------------------
   // FIND CUSTOMER FROM ID
   // ----------------------------------------------------
   const { userId, customerId } = req.params;
-  const dbCustomer = await Customer.findById(customerId);
+  const dbCustomer = await Customer.findById(customerId).populate({
+    path: "bookings",
+    select: "car",
+    populate: {
+      path: "car",
+      select: "carNumber"
+    }
+  });
   // ----------------------------------------------------
   // IF CUSTOMER NOT FOUND, SEND USER AN ERROR OF BAD REQUEST
   // ----------------------------------------------------
@@ -42,17 +49,13 @@ module.exports = async (req, res, next) => {
     return next(error);
   }
   // ----------------------------------------------------
-  // USER FOUND, NOW DELETE IT'S CUSTOMER'S ENTRY AND SAVE THE DB USER
+  // GET BOOKING AND FETCH CAR'S DATA FROM RESPECTIVE BOOKING
   // ----------------------------------------------------
-  dbUser.customer = null;
-  await dbUser.save();
+  //   console.log(dbCustomer.bookings);
+  res.json(dbCustomer);
   // ----------------------------------------------------
-  // DELETE THE CUSTOMER
   // ----------------------------------------------------
-  await Customer.findByIdAndDelete(customerId);
   // ----------------------------------------------------
-  // REDIRECT USER TO THE GET USERS API
   // ----------------------------------------------------
-  return res.redirect("/api/admin/users");
   // ----------------------------------------------------
 };
