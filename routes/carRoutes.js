@@ -10,7 +10,7 @@ const {
   getOneCar
 } = require("../controllers").carController;
 // ====================================================================
-// ROUTE   => /api/users/:userId/owner/:ownerId/cars
+// ROUTE   => /api/owners/:ownerId/cars
 // DESC    => SHOW ALL CARS OF THE OWNER, ADD NEW CAR
 router
   .route("/")

@@ -8,11 +8,11 @@ const {
 } = require("../controllers").ownerController;
 // ==============================================================
 // ---------------------------------------------------
-// @route   => /api/users/:userId/owner/:ownerId
+// @route   => /api/owners/:ownerId
 // @desc    => show specific owner, delete owner
 // ---------------------------------------------------
 router
-  .route("/:ownerId")
+  .route("/")
   .get(getOneOwner)
   .delete(deleteOneOwner);
 // ==============================================================

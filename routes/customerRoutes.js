@@ -9,11 +9,11 @@ const {
 } = require("../controllers").customerController;
 // ==============================================================
 // ---------------------------------------------------
-// @route   => /api/users/:userId/customer/:customerId
+// @route   => /customers/:customerId
 // @desc    => show specific customer, delete specific customer
 // ---------------------------------------------------
 router
-  .route("/:customerId")
+  .route("/")
   .get(getOneCustomer)
   .delete(deleteOneCustomer);
 // ==============================================================

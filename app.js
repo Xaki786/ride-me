@@ -53,16 +53,19 @@ app.use(logger("dev"));
 // ROUTES MIDDLEWARES
 // -----------------------------------
 const UsersURI = "/api/users";
+const CustomersURI = "/api/customers/:customerId";
+const OwnersURI = "/api/owners/:ownerId";
 const AdminURI = "/api/admin";
+const AuthURI = "/api/auth";
 // -----------------------------------
 app.use(`${AdminURI}/`, adminRoutes);
 // -----------------------------------
 app.use(`${UsersURI}/`, userRoutes);
-app.use(`${UsersURI}/auth`, authRoutes);
-app.use(`${UsersURI}/:userId/owner/`, ownerRoutes);
-app.use(`${UsersURI}/:userId/customer/`, customerRoutes);
-app.use(`${UsersURI}/:userId/customer/:customerId/bookings`, bookingRoutes);
-app.use(`${UsersURI}/:userId/owner/:ownerId/cars`, carRoutes);
+app.use(`${AuthURI}`, authRoutes);
+app.use(`${OwnersURI}`, ownerRoutes);
+app.use(`${CustomersURI}`, customerRoutes);
+app.use(`${CustomersURI}/bookings`, bookingRoutes);
+app.use(`${OwnersURI}/cars`, carRoutes);
 // =============================================================
 // ERROR MIDDLEWARE FOR PAGE NOT FOUND
 // =============================================================
