@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 const customerSchema = new mongoose.Schema({
+  isDeleted: {
+    type: Boolean,
+    default: false
+  },
   groups: [
     {
       type: mongoose.Schema.Types.ObjectId,

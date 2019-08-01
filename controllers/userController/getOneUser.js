@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
   // ---------------------------------------------------------
   // If User is found in the database
   // ---------------------------------------------------------
-  if (dbUser) {
+  if (dbUser && !dbUser.isDeleted) {
     // ---------------------------------------------------------
     // check if the user type is owner then send the owner detail
     // ---------------------------------------------------------
@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
       // ---------------------------------------------------------
       // if there is no owner present inside the databse then send error
       // ---------------------------------------------------------
-      if (!dbOwner) {
+      if (!dbOwner || dbOwner.isDeleted) {
         const error = new Error("Not a registered owner");
         error.status = 404;
         return next(error);
@@ -61,9 +61,9 @@ module.exports = async (req, res, next) => {
       );
 
       // ---------------------------------------------------------
-      // if there is no customer present inside the databse then send error
+      // if there is no customer present inside the databse or has been deleted temporarily then send error
       // ---------------------------------------------------------
-      if (!dbCustomer) {
+      if (!dbCustomer || dbCustomer.isDeleted) {
         const error = new Error("Not a registered customer");
         error.status = 404;
         return next(error);

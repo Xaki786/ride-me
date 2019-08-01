@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
   // ---------------------------------------------------
   // SEND ERROR RESPONSE IF OWNER NOT FOUND
   // ---------------------------------------------------
-  if (!dbOwner) {
+  if (!dbOwner || dbOwner.isDeleted) {
     const error = new Error("Invalid owner");
     error.status = 400;
     return next(error);
@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
   // ---------------------------------------------------
   // OWNER FOUND, NOW CREATE NEW GROUP
   // ---------------------------------------------------
-  const dbGroup = new Group();
+  const dbGroup = new Group({});
   // ---------------------------------------------------
   // ADD THIS GROUP TO THE OWNER'S GROUP ARRAY
   // ---------------------------------------------------
@@ -24,7 +24,7 @@ module.exports = async (req, res, next) => {
   // ---------------------------------------------------
   // ADD OWNER IN THE GROUP
   // ---------------------------------------------------
-  dbOwner.groups.push(dbGroup);
+  dbOwner.groups.push(dbGroup._id);
   // ---------------------------------------------------
   // SAVE GROUP
   // ---------------------------------------------------

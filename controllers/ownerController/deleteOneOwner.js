@@ -3,56 +3,33 @@
 // ====================================================================
 const { User, Owner } = require("../../models");
 // ====================================================================
-// @ROUTE   =>  /api/users/:userId/owner/:ownerId/
+// @ROUTE   =>  /api/owners/:ownerId/
 // @METHOD  =>  DELETE
 // ----------------------------------------------------
 module.exports = async (req, res, next) => {
   // ----------------------------------------------------
   // FIND OWNER FROM ID
   // ----------------------------------------------------
-  const { userId, ownerId } = req.params;
+  const { ownerId } = req.params;
   const dbOwner = await Owner.findById(ownerId);
   // ----------------------------------------------------
   // IF OWNER NOT FOUND, SEND USER AN ERROR
   // ----------------------------------------------------
-  if (!dbOwner) {
+  if (!dbOwner || dbOwner.isDeleted) {
     const error = new Error("Invalid Owner");
     error.status = 400;
     return next(error);
   }
   // ----------------------------------------------------
-  // CHECK IF USER PRESENT IN OWNER'S DOCUMENT IS SAME AS PROVIDED IN THE PARAMS
+  // OWNER FOUND, NOW DELETE CHANGE IT'S isDeleted FLAG TO TRUE AND SAVE
   // ----------------------------------------------------
-  const isValidUser = await dbOwner.isValidUser(userId);
-  if (!isValidUser) {
-    const error = new Error("Invalid User");
-    error.status = 400;
-    return next(error);
-  }
+  dbOwner.isDeleted = true;
+  await dbOwner.save();
   // ----------------------------------------------------
-  // OWNER FOUND AND USER IN THE PARAMS AND DOCUMENT ARE THE SAME, NOW SEARCH FOR THE DB USER
+  // SEND USER SUCCESS RESPONSE
   // ----------------------------------------------------
-  const dbUser = await User.findById(userId);
-  // ----------------------------------------------------
-  // IF DB USER NOT FOUND, SEND USER AN ERROR
-  // ----------------------------------------------------
-  if (!dbUser) {
-    const error = new Error("User Not Found");
-    error.status = 404;
-    return next(error);
-  }
-  // ----------------------------------------------------
-  // USER FOUND, NOW DELETE IT'S OWNER ENTRY AND SAVE THE DB USER
-  // ----------------------------------------------------
-  dbUser.owner = null;
-  await dbUser.save();
-  // ----------------------------------------------------
-  // DELETE THE OWNER
-  // ----------------------------------------------------
-  await Owner.findByIdAndDelete(ownerId);
-  // ----------------------------------------------------
-  // REDIRECT USER TO THE GET USERS API
-  // ----------------------------------------------------
-  return res.redirect("/api/admin/users");
+  return res.status(200).json({
+    message: "Owner Successfully deleted"
+  });
   // ----------------------------------------------------
 };

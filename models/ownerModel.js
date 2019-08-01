@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 const ownerSchema = new mongoose.Schema({
+  isDeleted: {
+    type: Boolean,
+    default: false
+  },
   licenseNumber: {
     type: String,
     required: true

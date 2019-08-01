@@ -9,17 +9,11 @@ module.exports = async (req, res, next) => {
   // FIND USER IN THE DATABASE
   const dbUser = await User.findById(req.params.userId);
 
-  // IF USER IS NOT PRESENT IN THE DATABASE, SEND THE ERROR
-  if (!dbUser) {
-    const error = new Error("User Not Found");
-    error.status = 404;
-    return next(error);
-  }
-  // USER IS PRESENT, NOW FETCH THE OWNER AND ITS RESPECTIVE CARS DATA FROM DATABASE
+  // FETCH THE OWNER AND ITS RESPECTIVE CARS DATA FROM DATABASE
   const dbOwner = await Owner.findById(req.params.ownerId).populate("cars");
 
-  // IF OWNER IS NOT PRESENT IN THE DATABASE, SEND THE ERROR
-  if (!dbOwner) {
+  // IF OWNER IS NOT PRESENT IN THE DATABASE OR HAS BEEN TEMPORARILY DELETED, SEND THE ERROR
+  if (!dbOwner || dbOwner.isDeleted) {
     const error = new Error("Owner Not Found");
     error.status = 404;
     return next(error);

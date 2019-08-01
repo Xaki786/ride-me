@@ -1,7 +1,7 @@
 // ==============================================================
 // IMPORTING GROUP CONTROLLER METHODS
 // ==============================================================
-const createBooking = require("./createGroup");
+const createGroup = require("./createGroup");
 // ==============================================================
 module.exports = {
   // ============================================================
@@ -14,5 +14,5 @@ module.exports = {
   // AUTHENTICATION: PENDING
   // AUTHORIZATION: PENDING
   // ----------------------------------------------------
-  createBooking
+  createGroup
 };

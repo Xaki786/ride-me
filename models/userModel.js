@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const userSchema = new mongoose.Schema({
+  isDeleted: {
+    type: Boolean,
+    default: false
+  },
   method: {
     type: String,
     enum: ["local"],
