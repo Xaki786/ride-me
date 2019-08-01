@@ -8,6 +8,7 @@ const authController = require("./authController");
 const adminController = require("./adminController");
 const customerController = require("./customerController");
 const bookingController = require("./bookingController");
+const groupController = require("./groupController");
 // ==============================================================
 // EXPORTING CONTROLLERS AS NAMED EXPORTS
 // ==============================================================
@@ -18,5 +19,6 @@ module.exports = {
   authController,
   adminController,
   customerController,
-  bookingController
+  bookingController,
+  groupController
 };
