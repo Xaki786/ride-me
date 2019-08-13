@@ -4,6 +4,9 @@ const ownerSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  name: "String",
+  address: "String",
+  email: "String",
   licenseNumber: {
     type: String,
     required: true

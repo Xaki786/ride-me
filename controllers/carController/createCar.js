@@ -1,11 +1,12 @@
 // ====================================================================
 // CREATE NEW CAR FOR THE OWNER
 // ====================================================================
-// @route   =>  /api/users/:userId/owner/:ownerId/cars
+// @route   =>  /api/owners/:ownerId/cars
 // @method  =>  POST
 // ====================================================================
 const { Owner, Car } = require("../../models");
 module.exports = async (req, res, next) => {
+  const { ownerId } = req.params;
   // ---------------------------------------------------------
   // ACCEPT THESE VALUES FROM REQUEST
   // ---------------------------------------------------------
@@ -33,12 +34,11 @@ module.exports = async (req, res, next) => {
   // ---------------------------------------------------------
   // FIND OWNER OF THE CAR IN THE DATABASE FROM ID PROVIDED IN THE PARAMS
   // ---------------------------------------------------------
-  const dbOwner = await Owner.findById(req.params.ownerId);
-
+  const dbOwner = await Owner.findById(ownerId);
   // ---------------------------------------------------------
   // IF NO OWNER FOUND, SEND USER AN ERROR
   // ---------------------------------------------------------
-  if (!dbOwner) {
+  if (!dbOwner || dbOwner.isDeleted) {
     const error = new Error("Owner Not Found");
     error.status = 404;
     return next(error);

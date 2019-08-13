@@ -11,15 +11,15 @@ const {
 } = require("../controllers").carController;
 // ====================================================================
 // ROUTE   => /api/owners/:ownerId/cars
-// DESC    => SHOW ALL CARS OF THE OWNER, ADD NEW CAR
+// DESC    => SHOW ALL CARS OF THE OWNER => ADD NEW CAR
 router
   .route("/")
   .get(getCars)
   .post(createCar);
 
 // ====================================================================
-// ROUTE   => /api/users/:userId/owner/:ownerId/cars/:carId
-// DESC   => GET DATA OF A SINGLE CAR, UPDATE SINGLE CAR AND DELETE CAR
+// ROUTE   => /api/owners/:ownerId/cars/:carId
+// DESC   => GET DATA OF A SINGLE CAR => UPDATE SINGLE CAR => DELETE CAR
 router
   .route("/:carId")
   .get(getOneCar)

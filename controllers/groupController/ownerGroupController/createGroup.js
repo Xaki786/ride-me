@@ -1,4 +1,4 @@
-const { Group, Owner } = require("../../models");
+const { Group, Owner } = require("../../../models");
 module.exports = async (req, res, next) => {
   // ---------------------------------------------------
   // FIND OWNER FROM ID

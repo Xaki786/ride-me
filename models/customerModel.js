@@ -4,6 +4,9 @@ const customerSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  name: "String",
+  address: "String",
+  email: "String",
   groups: [
     {
       type: mongoose.Schema.Types.ObjectId,

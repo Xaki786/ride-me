@@ -56,8 +56,12 @@ module.exports = async (req, res, next) => {
     // ------------------------------------------------
     // SAVE OWNER REFRENCE IN THE USER AND USER REFREENCE IN THE OWNER
     // ------------------------------------------------
-    dbUser.owner = dbOwner;
-    dbOwner.user = dbUser;
+    dbUser.owner = dbOwner._id;
+    dbOwner.user = dbUser._id;
+    dbOwner.name = dbUser.name;
+    dbOwner.address = dbUser.address;
+    dbOwner.phoneNumber = dbUser.phoneNumber;
+    dbOwner.email = dbUser.email;
     await dbOwner.save();
   }
   // ------------------------------------------------
@@ -68,8 +72,12 @@ module.exports = async (req, res, next) => {
     // ------------------------------------------------
     // SAVE CUSTOMER REFRENCE IN THE USER AND USER REFREENCE IN THE CUSTOMER
     // ------------------------------------------------
-    dbUser.customer = dbCustomer;
-    dbCustomer.user = dbUser;
+    dbUser.customer = dbCustomer._id;
+    dbCustomer.user = dbUser._id;
+    dbCustomer.name = dbUser.name;
+    dbCustomer.address = dbUser.address;
+    dbCustomer.phoneNumber = dbUser.phoneNumber;
+    dbCustomer.email = dbUser.email;
     await dbCustomer.save();
   }
   // ------------------------------------------------

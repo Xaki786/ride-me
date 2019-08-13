@@ -38,8 +38,8 @@ const carSchema = new mongoose.Schema({
   //   lastBooking: Number",
   //   nextBooking: "Number(confused)"
 });
-carSchema.methods.isValidCar = async function() {
-  return (await this.isDeleted) !== true;
+carSchema.methods.isValidOwner = async function(ownerId) {
+  return this.owner._id.equals(ownerId);
 };
 const carModel = mongoose.model("car", carSchema);
 module.exports = carModel;

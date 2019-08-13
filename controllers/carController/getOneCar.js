@@ -1,7 +1,7 @@
 // ====================================================================
 // SHOW SINGLE CAR
 // ====================================================================
-// @route   =>  /api/users/:userId/owner/:ownerId/cars/:carId
+// @route   =>  /api/owners/:ownerId/cars/:carId
 // @method  =>  GET
 // ====================================================================
 const { Car } = require("../../models");
@@ -9,29 +9,22 @@ module.exports = async (req, res, next) => {
   // ---------------------------------------------------------
   // FIND CAR => FIND LAST BOOKING => FETCH LIST OF RIDERS FROM THAT BOOKING
   // ---------------------------------------------------------
-  const dbCar = await Car.findById(req.params.carId).populate({
-    path: "bookings",
-    populate: {
-      path: "customers",
+  const dbCar = await Car.findById(req.params.carId)
+    .populate({
+      path: "bookings",
       populate: {
-        path: "user",
+        path: "customers",
         select: "name"
       }
-    }
-  });
+    })
+    .populate({
+      path: "owner",
+      select: "name"
+    });
   // ---------------------------------------------------------
-  // IF CAR NOT FOUND, SEND USER AN ERROR
+  // IF CAR NOT FOUND, SEND USER AN ERROR OR CAR HAS BEEN DELETED TEMPORARILY
   // ---------------------------------------------------------
-  if (!dbCar) {
-    const error = new Error("Car Not Found");
-    error.status = 404;
-    return next(error);
-  }
-  // ---------------------------------------------------------
-  // CHECK WHETHER THIS CAR HAS BEEN DELETED IN PAST
-  // ---------------------------------------------------------
-  const isValidCar = await dbCar.isValidCar();
-  if (!isValidCar) {
+  if (!dbCar || dbCar.isDeleted) {
     const error = new Error("Car Not Found");
     error.status = 404;
     return next(error);

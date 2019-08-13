@@ -14,7 +14,8 @@ const {
   customerRoutes,
   adminRoutes,
   bookingRoutes,
-  groupRoutes
+  ownerGroupRoutes,
+  customerGroupRoutes
 } = require("./routes");
 const app = express();
 
@@ -59,15 +60,27 @@ const OwnersURI = "/api/owners/:ownerId";
 const AdminURI = "/api/admin";
 const AuthURI = "/api/auth";
 // -----------------------------------
+// ADMIN ROUTES
+// -----------------------------------
 app.use(`${AdminURI}/`, adminRoutes);
+// -----------------------------------
+// USER AND AUTHENTICATION ROUTES
 // -----------------------------------
 app.use(`${UsersURI}/`, userRoutes);
 app.use(`${AuthURI}`, authRoutes);
+// -----------------------------------
+// OWNER AND NESTED ROUTES
+// -----------------------------------
 app.use(`${OwnersURI}`, ownerRoutes);
 app.use(`${OwnersURI}/cars`, carRoutes);
-app.use(`${OwnersURI}/groups`, groupRoutes);
+app.use(`${OwnersURI}/groups`, ownerGroupRoutes);
+// -----------------------------------
+// CUSTOMER AND NESTED ROUTES
+// -----------------------------------
 app.use(`${CustomersURI}`, customerRoutes);
 app.use(`${CustomersURI}/bookings`, bookingRoutes);
+app.use(`${CustomersURI}/groups`, customerGroupRoutes);
+// -----------------------------------
 // =============================================================
 // ERROR MIDDLEWARE FOR PAGE NOT FOUND
 // =============================================================

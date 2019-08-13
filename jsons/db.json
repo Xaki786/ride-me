@@ -3,8 +3,8 @@
     {
       "email": "owner@gmail.com",
       "password": "123",
-      "name": "Muhammad Zakria Jan",
-      "address": "House No E-29, HIT Taxila Cantt",
+      "name": "Owner",
+      "address": "Owner Address",
       "userType": "owner",
       "phoneNumber": "03139987417",
       "licenseNumber": "123456"
@@ -12,8 +12,8 @@
     {
       "email": "customer@gmail.com",
       "password": "123",
-      "name": "Muhammad Zakria Jan",
-      "address": "House No E-29, HIT Taxila Cantt",
+      "name": "Customer",
+      "address": "Customer Address",
       "userType": "customer",
       "phoneNumber": "03139987417"
     }

@@ -1,7 +1,7 @@
 // ====================================================================
 // DELETE CAR FOR THE OWNER
 // ====================================================================
-// @route   =>  /api/users/:userId/owner/:ownerId/cars/:carId
+// @route   =>  /api/owners/:ownerId/cars/:carId
 // @method  =>  DELETE
 // ====================================================================
 const { Car, Owner } = require("../../models");
@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
   // ---------------------------------------------------
   // IF CAR NOT FOUND, SEND AN ERROR TO THE USER
   // ---------------------------------------------------
-  if (!dbCar) {
+  if (!dbCar || dbCar.isDeleted) {
     const error = new Error("Car not Found");
     error.status = 404;
     return next(error);
@@ -27,9 +27,9 @@ module.exports = async (req, res, next) => {
   // ---------------------------------------------------
   // IF OWNER NOT FOUND, SEND AN ERROR TO THE USER
   // ---------------------------------------------------
-  if (!dbOwner) {
-    const error = new Error("Owner not Found");
-    error.status = 404;
+  if (!dbOwner || dbOwner.isDeleted) {
+    const error = new Error("Invalid owner of the car");
+    error.status = 400;
     return next(error);
   }
   // ENABLE CAR PROPERTY IS DELETED TO BE TRUE

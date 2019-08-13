@@ -2,6 +2,8 @@
 // IMPORTING CUSTOMER CONTROLLER METHODS
 // ==============================================================
 const getOneCustomer = require("./getOneCustomer");
+const changeCustomerType = require("./changeCustomerType");
+const updateCustomer = require("./updateCustomer");
 const deleteOneCustomer = require("./deleteOneCustomer");
 const getBookedCars = require("./getBookedCars");
 // ==============================================================
@@ -11,7 +13,7 @@ module.exports = {
   // ====================================================================
   // SHOW PROFILE OF THE CUSTOMER
   // ====================================================================
-  // @ROUTE   =>  /api/users/:userId/customer/:customerId/
+  // @ROUTE   =>  /api/customers/:customerId/
   // @METHOD  =>  GET
   // ----------------------------------------------------
   // VALIDATION: PENDING
@@ -20,9 +22,20 @@ module.exports = {
   // ----------------------------------------------------
   getOneCustomer,
   // ====================================================================
+  // UPDATE PROFILE OF THE CUSTOMER
+  // ====================================================================
+  // @ROUTE   =>  /api/customers/:customerId/
+  // @METHOD  =>  PUT
+  // ----------------------------------------------------
+  // VALIDATION: PENDING
+  // AUTHENTICATION: PENDING
+  // AUTHORIZATION: PENDING
+  // ----------------------------------------------------
+  updateCustomer,
+  // ====================================================================
   // DELETE PROFILE OF THE CUSTOMER
   // ====================================================================
-  // @ROUTE   =>  /api/users/:userId/customer/:customerId/
+  // @ROUTE   =>  /api/customers/:customerId/
   // @METHOD  =>  DELETE
   // ----------------------------------------------------
   // VALIDATION: PENDING
@@ -30,5 +43,16 @@ module.exports = {
   // AUTHORIZATION: PENDING
   // ----------------------------------------------------
   deleteOneCustomer,
+  // ====================================================================
+  // UPDATE PROFILE OF THE CUSTOMER
+  // ====================================================================
+  // @ROUTE   =>  /api/customers/:customerId/
+  // @METHOD  =>  PUT
+  // ----------------------------------------------------
+  // VALIDATION: PENDING
+  // AUTHENTICATION: PENDING
+  // AUTHORIZATION: PENDING
+  // ----------------------------------------------------
+  changeCustomerType,
   getBookedCars
 };
