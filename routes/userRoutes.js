@@ -6,7 +6,7 @@ const { createUser, getOneUser } = require("../controllers").userController;
 // ====================================================================
 // @route   => '/api/users/'
 // @desc    => Create new user
-router.route("/").post(createUser);
+router.route("/register").post(createUser);
 
 // ====================================================================
 // @route   => /api/users/:userId
