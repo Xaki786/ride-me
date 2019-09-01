@@ -15,9 +15,3 @@ router.route("/:userId").get(getOneUser);
 router.route("/:userId").put(updateUser);
 // ====================================================================
 module.exports = router;
-
-Latest commit
-43a0cd4
-now
-Type 	Name 	Latest commit message 	Commit time
-	..
