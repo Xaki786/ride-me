@@ -4,6 +4,7 @@ const { User, Car, Owner, Booking, Bill, Customer } = require("../../models");
 // ==============================================================
 const createUser = require("./createUser");
 const getOneUser = require("./getOneUser");
+const updateUser = require("./updateUser");
 
 // ==============================================================
 // USER CONTROLLER
@@ -23,6 +24,7 @@ module.exports = {
   // ----------------------------------------------------
   // VALIDATION: PENDING
   // ----------------------------------------------------
-  getOneUser
+  getOneUser,
+  updateUser
   // ====================================================================
 };
