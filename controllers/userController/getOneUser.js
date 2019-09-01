@@ -35,11 +35,14 @@ module.exports = async (req, res, next) => {
         address,
         userType,
         phoneNumber,
-        local: { email, name }
+        local: { email },
+        name,
+        id
       } = dbUser;
       const { cars, licenseNumber, permission } = dbOwner;
       return res.status(200).json({
         email,
+        id,
         name,
         address,
         userType,
@@ -76,11 +79,14 @@ module.exports = async (req, res, next) => {
         address,
         userType,
         phoneNumber,
-        local: { email, name }
+        local: { email },
+        name,
+        id
       } = dbUser;
       const { bookings } = dbCustomer;
       return res.status(200).json({
         email,
+        id,
         name,
         address,
         userType,
